@@ -13,6 +13,22 @@
     <meta name="author" content="EthanH" />
     <meta name="theme-color" content="#ffffff" />
     <link rel="stylesheet" type="text/css" href="{% static 'portfolio/semantic.min.css' %}">
+
+    <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+    <script type="text/javascript">
+    document.addEventListener("adobe_dc_view_sdk.ready", function(){
+        var adobeDCView = new AdobeDC.View({clientId: "{{ pdf }}", divId: "adobe-dc-view"});
+        adobeDCView.previewFile({
+        content:{ location: 
+            { url: "{% static 'portfolio/resume.pdf' %}"}},
+        metaData:{fileName: "resume.pdf"}
+        },
+        {
+        embedMode: "IN_LINE"
+        });
+    });
+    </script>
+
     <style type="text/css">
     body {
         -webkit-font-smoothing: antialiased;
@@ -106,6 +122,10 @@
     .ui.inverted.vertical.segment footer.ui.segment a {
         color: white;
     }
+
+    #resume-div {
+        margin-top: 10em;
+    }
     </style>
 
 </head>
@@ -116,17 +136,12 @@
         <nav class="ui container">
             <h1 class="ui inverted header">Ethan Hogen</h1>
             <div class="ui borderless inverted compact menu">
-                <a class="active item" href="/portfolio/">About</a>
-                <a class="item" href="/portfolio/resume">Resume</a>
+                <a class="item" href="/portfolio/">About</a>
+                <a class="active item" href="/portfolio/resume">Resume</a>
             </div>
         </nav>
-        <div class="ui content container">
-            <h1 class="ui inverted header">I build web apps and play with data.</h1>
-            <p>
-                A python web developer with a passion for improving systems using analytics. Come with me on my journey!
-            <!-- for the about section -->
-            <!-- My interest in computers started at an early age. I explored computer engineering through minecraft, I've learned to code through various coursework and self led lessons, and my interest in data comes from an analytical curiosity and passion for systems engineering. Come with me on my journey!  -->
-            </p>
+        <div class="ui content container" id="resume-div">
+            <div id="adobe-dc-view" style="height: 700px; width: 600px; margin: 0 auto;"></div>
         </div>
 
         <footer class="ui inverted vertical segment">
