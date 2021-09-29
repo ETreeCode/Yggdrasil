@@ -24,6 +24,7 @@ if os.path.isfile(dotenv_file):
 
 # UPDATE secret key
 SECRET_KEY = os.environ['SECRET_KEY'] # Instead of your actual secret key
+PDF_API_ID = os.environ['DEV_PDF_API_ID']
 
 
 # Quick-start development settings - unsuitable for production
